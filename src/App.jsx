@@ -1,35 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import Products from "./Components/Products";
+import Categories from "./Components/Categories";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import storefrontReducer from "./store";
 
+/* creating the reducer */
+const storeFront = createStore(storefrontReducer, composeWithDevTools());
+/* ------------------- */
 function App() {
-  const [count, setCount] = useState(0)
-
+  let categoryState = storeFront.getState().categories; //==> to access the state and send it to the component
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Provider store={storeFront}>
+      <Header />
+      <Categories categories={categoryState.categories} />
+      <Products />
+      <Footer />
+    </Provider>
+  );
 }
 
-export default App
+export default App;
