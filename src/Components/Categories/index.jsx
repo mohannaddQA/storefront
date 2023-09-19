@@ -1,15 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Paper, Typography } from "@mui/material";
-
+import { connect } from "react-redux";
 function Categories(props) {
   /* --- this not a good practice but just for demo --> after this we send the state from the app level */
-  const categories = useSelector((state) => state.categories);
+  // const categories = useSelector((state) => state.categories);
 
   const dispatch = useDispatch();
 
   const handleClick = (event) => {
-    if (event.target.innerText === categories.activeCategory.display) {
+    // if (event.target.innerText === categories.activeCategory.display) {
+    if (event.target.innerText === props.categoryState.activeCategory.display) {
       dispatch({
         type: "CLEAR_ACTIVECATEGORY",
         payload: "",
@@ -31,11 +32,11 @@ function Categories(props) {
     }
   };
 
-  return props.categories ? (
+  return props.categoryState.categories ? ( //after refactoring using (maptoprops) ==> boo need to use props
     <>
       <Typography>Categories:</Typography>
       <Container id="categoryContainer">
-        {props.categories.map((category) => {
+        {props.categoryState.categories.map((category) => {
           return (
             <button
               key={`paper_${category.name}`}
@@ -53,4 +54,8 @@ function Categories(props) {
   ) : null;
 }
 
-export default Categories;
+const mapStateToProps = (state) => ({
+  productState: state.products,
+  categoryState: state.categories,
+});
+export default connect(mapStateToProps)(Categories);

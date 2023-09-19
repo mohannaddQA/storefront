@@ -8,6 +8,7 @@ function Header(props) {
       <Typography variant="h2" component="h2">
         Our Store
       </Typography>
+      <Categories />
     </Container>
   );
 }

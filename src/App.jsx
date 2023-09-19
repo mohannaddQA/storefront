@@ -15,7 +15,7 @@ function App() {
   return (
     <Provider store={storeFront}>
       <Header />
-      <Categories categories={categoryState.categories} />
+      {/* <Categories categories={categoryState.categories} /> */}
       <Products />
       <Footer />
     </Provider>

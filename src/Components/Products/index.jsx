@@ -15,7 +15,7 @@ import {
 
 function Products(props) {
   /*accessing the state using the use selector */
-  // if you use this way ==> no need to use props.productState and we need to dend it from the app level
+  // if you use this way ==> no need to use props.productState and we need to dend it from the app level // not sure about this
 
   //   const productState = useSelector(
   //     (storefrontState) => storefrontState.products
