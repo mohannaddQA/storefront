@@ -1,0 +1,55 @@
+#productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.MuiCard-root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  height: 450px;
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-5px);
+}
+
+.MuiCardActions-root {
+  margin-top: auto;
+}
+
+.MuiCardHeader-root {
+  background-color: #f5f5f5;
+  padding: 16px;
+  text-align: center;
+}
+
+.MuiCardMedia-root {
+  height: 200px;
+}
+
+.MuiCardHeader-title,
+.MuiCardHeader-subheader {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.MuiCardContent-root {
+  padding: 16px;
+}
+
+.MuiCardActions-root .MuiButton-contained {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.MuiCardActions-root .MuiButton-contained + .MuiButton-contained {
+  margin-left: 8px;
+}

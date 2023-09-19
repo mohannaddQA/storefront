@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Paper, Typography } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+
 import { connect } from "react-redux";
+import "./index.css";
 function Categories(props) {
   /* --- this not a good practice but just for demo --> after this we send the state from the app level */
   // const categories = useSelector((state) => state.categories);
@@ -34,22 +37,23 @@ function Categories(props) {
 
   return props.categoryState.categories ? ( //after refactoring using (maptoprops) ==> boo need to use props
     <>
-      <Typography>Categories:</Typography>
-      <Container id="categoryContainer">
-        {props.categoryState.categories.map((category) => {
-          return (
-            <button
-              key={`paper_${category.name}`}
-              onClick={handleClick}
-              elevation={4}
-              className="categorySelector"
-            >
-              {category.display}
-            </button>
-          );
-        })}
-        {/* <p>{categories.activeCategory.display}</p>      */}
-      </Container>
+      <Box marginTop={"70px"}>
+        <h3>Browse Our Categories: </h3>
+        <Stack direction="row" spacing={2}>
+          {props.categoryState.categories.map((category) => {
+            return (
+              <button
+                key={`paper_${category.name}`}
+                onClick={handleClick}
+                elevation={4}
+                className="categorySelector"
+              >
+                {category.display}
+              </button>
+            );
+          })}{" "}
+        </Stack>
+      </Box>
     </>
   ) : null;
 }

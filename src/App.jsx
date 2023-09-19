@@ -11,13 +11,12 @@ import storefrontReducer from "./store";
 const storeFront = createStore(storefrontReducer, composeWithDevTools());
 /* ------------------- */
 function App() {
-  let categoryState = storeFront.getState().categories; //==> to access the state and send it to the component
   return (
     <Provider store={storeFront}>
       <Header />
-      {/* <Categories categories={categoryState.categories} /> */}
+      <Categories />
       <Products />
-      <Footer />
+      {/* <Footer /> */}
     </Provider>
   );
 }

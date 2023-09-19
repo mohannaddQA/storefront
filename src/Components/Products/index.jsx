@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 // import { useSelector } from "react-redux";  // this is when for accessing the state using use selector
-
+import "./index.css";
 import {
   Card,
   CardActions,
@@ -29,7 +29,12 @@ function Products(props) {
   /* ------------------------------------------- */
 
   return (
-    <Container key="productsContainer" id="productsContainer">
+    <Container
+      key="productsContainer"
+      id="productsContainer"
+      className="products-container"
+    >
+      <h2>{props.categoryState.activeCategory.name}</h2> <br />
       {props.categoryState.activeCategory.name
         ? props.productState.allProducts.map((product) => {
             if (product.category === props.categoryState.activeCategory.name) {
