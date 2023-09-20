@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import storefrontReducer from "./store";
+import SimpleCart from "./Components/simpleCart";
 
 /* creating the reducer */
 const storeFront = createStore(storefrontReducer, composeWithDevTools());
@@ -16,6 +17,7 @@ function App() {
       <Header />
       <Categories />
       <Products />
+      <SimpleCart />
       {/* <Footer /> */}
     </Provider>
   );

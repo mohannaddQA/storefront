@@ -1,17 +1,26 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
-
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-
 import Menu from "@mui/material/Menu";
-function Header(props) {
-  const handleCartButtonClick = (event) => {};
+import { useDispatch, useSelector } from "react-redux";
 
-  const handleClose = () => {};
+function Header(props) {
+  const cartState = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  console.log(cartState);
+  const handleCartButtonClick = () => {
+    dispatch({
+      type: "TOGGLE_CART",
+      payload: !cartState.showCart,
+    });
+  };
+  let itemsCount = 0;
+  for (let i = 0; i < cartState.items.length; i++) {
+    itemsCount += cartState.items[i].quantity;
+  }
+
   return (
     <Container component="header" id="storeHeader">
       <AppBar component="nav" sx={{ backgroundColor: "#F5F5F5" }}>
@@ -33,7 +42,7 @@ function Header(props) {
           </Typography>
 
           <Button sx={{ color: "#000000" }} onClick={handleCartButtonClick}>
-            {`CART (${"cartCount"})`}
+            {`CART (${itemsCount})`}
           </Button>
           <Menu
             id="cart-menu"

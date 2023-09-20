@@ -61,5 +61,6 @@ function Categories(props) {
 const mapStateToProps = (state) => ({
   productState: state.products,
   categoryState: state.categories,
+  cartState: state.cart,
 });
 export default connect(mapStateToProps)(Categories);
