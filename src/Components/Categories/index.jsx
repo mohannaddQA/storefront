@@ -1,18 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
+import { fetchCategories } from "../../store/categories";
 
 import { connect } from "react-redux";
 import "./index.css";
 function Categories(props) {
-  /* --- this not a good practice but just for demo --> after this we send the state from the app level */
-  // const categories = useSelector((state) => state.categories);
-
   const dispatch = useDispatch();
 
   const handleClick = (event) => {
-    // if (event.target.innerText === categories.activeCategory.display) {
     if (event.target.innerText === props.categoryState.activeCategory.display) {
       dispatch({
         type: "CLEAR_ACTIVECATEGORY",
@@ -34,8 +31,11 @@ function Categories(props) {
       event.target.classList.add("activeCategory");
     }
   };
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, []);
 
-  return props.categoryState.categories ? ( //after refactoring using (maptoprops) ==> boo need to use props
+  return props.categoryState.categories ? (
     <>
       <Box marginTop={"70px"}>
         <h3>Browse Our Categories: </h3>

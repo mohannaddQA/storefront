@@ -14,6 +14,18 @@ const initialCategoryState = {
   activeCategory: {},
 };
 
+export const fetchCategories = () => async (dispatch) => {
+  let response = await fetch(
+    "https://650b1fa7dfd73d1fab099ffb.mockapi.io/api/v1/categories"
+  );
+  let data = await response.json();
+
+  dispatch({
+    type: "FETCH_CATEGORIES",
+    payload: data,
+  });
+};
+
 const categoryReducer = (state = initialCategoryState, action) => {
   // const { type, payload } = action;
   // switch(type){}
@@ -22,7 +34,7 @@ const categoryReducer = (state = initialCategoryState, action) => {
     case "SET_ACTIVECATEGORY":
       let activeCategory = state.categories.find(
         (category) => category.display === action.payload
-      );
+      ); //==> not realy adviced to put this logic here
       return {
         // the first val is the sent val
         categories: state.categories,
@@ -32,6 +44,11 @@ const categoryReducer = (state = initialCategoryState, action) => {
       return {
         categories: state.categories,
         activeCategory: {},
+      };
+    case "FETCH_CATEGORIES":
+      return {
+        ...state,
+        categories: action.payload,
       };
     default:
       return state;
